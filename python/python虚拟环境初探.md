@@ -54,9 +54,28 @@ pyenv global 3.6.8
 # 运行python3，发现现在python的版本已经是3.6.8了，这下我们就可以方便的切换python版本了
 ```
 
-### 2.2 virtualenv
+#### 2.2 virtualenv
 
-​	pyenv还只解决了python多版本切换的问题，我们的终极目标是可以创建一个个独立的python环境，这一点pyenv做不到，需要virtualenv，实际上还有个pyenv-virtualenv，可以理解为和virtualenv同一个东西。
+​	pyenv还只解决了python多版本切换的问题，我们的终极目标是可以创建一个个独立的python环境，这一点pyenv做不到，需要virtualenv，实际上还有个pyenv-virtualenv，我的理解是和virtualenv同一个东西。
 
+#### 2.3 venv
 
+​	python3内置了虚拟环境管理工具venv，使用方式也很简单：
+
+```sh
+python3 -m venv <ENV_DIR>
+cd <ENV_DIR> && source bin/activate
+# 此时通过which python就可以看到python的位置在<ENV_DIR>/bin/python
+# 通过pip list可以看到当前环境下安装的python库，可以对比系统环境发现没有继承系统环境的库
+# 通过 pip install可以在该环境安装python库
+```
+
+#### 2.4 怎么迁移环境？
+
+​	通过pip实际上可以直接生成当前环境安装的所有python库：
+
+```sh
+pip freeze > requirements.txt
+# 通过requirements.txt就可以让其他人的环境也装上和你一样的依赖了
+```
 
